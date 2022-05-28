@@ -7,9 +7,10 @@ class Vector
 private:
 	int *arr = nullptr;
 	int size = 0;
+	int capacity = 0;
 
 public:
-	Vector(int size) : size(size)
+	Vector(int size) : size(size), capacity(size)
 	{
 		if (size < 1)
 		{
@@ -54,23 +55,27 @@ public:
 	{
 		return arr[size - 1];
 	}
-	//highly unoptimal approach
-	//takes O(size) space and time for 1 push back operation
+	// highly unoptimal approach
+	// takes O(size) space and time for 1 push back operation
 	void push_back(int value)
 	{
-		//create a extra temp pointer to old array
+		if (size < capacity)
+		{
+			arr[size] = value;
+			size++;
+			return;
+		}
+		cout << "new memory allocatied"
+			 << "size:" << size<<"  capacity:"<<capacity<<endl;
+		capacity = 2 * size;
 		int *temp = arr;
-		//create new array and point arr to it
-		arr = new int[size + 1];
-		//copy old data to new array
+		arr = new int[capacity];
 		for (int i = 0; i < size;i++)
 		{
 			arr[i] = temp[i];
 		}
-		//add extra element at the end
 		arr[size] = value;
 		size++;
-		//delete the old array
 		delete[] temp;
 	}
 	~Vector()
@@ -85,13 +90,14 @@ int main()
 	freopen("..\\00-in.txt", "r", stdin);
 	freopen("..\\00-out.txt", "w", stdout);
 
-	Vector v(10);
-	for (int i = 0; i < 10; i++)
+	Vector v(1);
+	v.set(0,0);
+	for (int i = 0; i < 100; i++)
 	{
-		v.set(i, i);
+		v.push_back(i);
 	}
 	v.print();
-	v.push_back(100 );
+	v.push_back(100);
 	v.print();
 	return 0;
 }
