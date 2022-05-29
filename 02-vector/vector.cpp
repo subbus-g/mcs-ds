@@ -6,12 +6,26 @@ class Vector
 {
 private:
 	int *arr = nullptr;
-	int size = 0;
-	int capacity = 0;
+	int size, capacity;
+	void expand_capacity()
+	{
+		capacity *= 2;
+		int *temp = arr;
+		arr = new int[capacity];
+		for (int i = 0; i < size; i++)
+		{
+			arr[i] = temp[i];
+		}
+		delete[] temp;
+	}
 
 public:
+	Vector() : size(0), capacity(0)
+	{
+	}
 	Vector(int size) : size(size), capacity(size)
 	{
+
 		if (size < 1)
 		{
 			size = 1;
@@ -59,24 +73,12 @@ public:
 	// takes O(size) space and time for 1 push back operation
 	void push_back(int value)
 	{
-		if (size < capacity)
+		// if block is executed less often now
+		if (size == capacity)
 		{
-			arr[size] = value;
-			size++;
-			return;
+			expand_capacity();
 		}
-		cout << "new memory allocatied"
-			 << "size:" << size<<"  capacity:"<<capacity<<endl;
-		capacity = 2 * size;
-		int *temp = arr;
-		arr = new int[capacity];
-		for (int i = 0; i < size;i++)
-		{
-			arr[i] = temp[i];
-		}
-		arr[size] = value;
-		size++;
-		delete[] temp;
+		arr[size++] = value;
 	}
 	~Vector()
 	{
@@ -90,14 +92,18 @@ int main()
 	freopen("..\\00-in.txt", "r", stdin);
 	freopen("..\\00-out.txt", "w", stdout);
 
-	Vector v(1);
-	v.set(0,0);
-	for (int i = 0; i < 100; i++)
-	{
-		v.push_back(i);
-	}
+	int n = 5;
+	Vector v(n);
+	v.set(0, 10);
+	v.set(1, 8);
+	v.set(2, 7);
+	v.set(3, 5);
+	v.set(4, 3);
+
 	v.print();
 	v.push_back(100);
+	v.push_back(200);
+	v.push_back(300);
 	v.print();
 	return 0;
 }
