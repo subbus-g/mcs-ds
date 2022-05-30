@@ -87,14 +87,23 @@ public:
 			expand_capacity();
 		}
 		size++;
-		// create a hole at idx
-		for (int i = size ; i > idx; i--)
+
+		// // create a hole at idx
+		// for (int i = size ; i > idx; i--)
+		// {
+		// 	// pull the value from preceeding location
+		// 	arr[i]=arr[i-1]
+		// }
+
+		//create a hole at idx
+		for (int i = size - 1; i >= idx;i--)
 		{
-			// pull the value to current locaton from preceeding location
-			arr[i]=arr[i-1]
+			// push the current value to succeeding location
+			arr[i + 1] = arr[i];
 		}
-		// fill the hole with given value
-		arr[idx] = value;
+
+			// fill the hole with given value
+			arr[idx] = value;
 	}
 	~Vector()
 	{
