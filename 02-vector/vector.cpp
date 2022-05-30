@@ -88,9 +88,10 @@ public:
 		}
 		size++;
 		// create a hole at idx
-		for (int i = size - 1; i >= idx; i--)
+		for (int i = size ; i > idx; i--)
 		{
-			swap(arr[i], arr[i + 1]);
+			// pull the value to current locaton from preceeding location
+			arr[i]=arr[i-1]
 		}
 		// fill the hole with given value
 		arr[idx] = value;
