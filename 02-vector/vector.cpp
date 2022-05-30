@@ -70,7 +70,7 @@ public:
 		return arr[size - 1];
 	}
 	// highly unoptimal approach
-	// takes O(size) space and time for 1 push back operation
+	// takes O(size) space but O(1) amortized time for 1 push back operation
 	void push_back(int value)
 	{
 		// if block is executed less often now
@@ -79,6 +79,21 @@ public:
 			expand_capacity();
 		}
 		arr[size++] = value;
+	}
+	void insert(int idx, int value)
+	{
+		if (size == capacity)
+		{
+			expand_capacity();
+		}
+		size++;
+		// create a hole at idx
+		for (int i = size - 1; i >= idx; i--)
+		{
+			swap(arr[i], arr[i + 1]);
+		}
+		// fill the hole with given value
+		arr[idx] = value;
 	}
 	~Vector()
 	{
@@ -101,9 +116,7 @@ int main()
 	v.set(4, 3);
 
 	v.print();
-	v.push_back(100);
-	v.push_back(200);
-	v.push_back(300);
+	v.insert(2, 17);
 	v.print();
 	return 0;
 }
