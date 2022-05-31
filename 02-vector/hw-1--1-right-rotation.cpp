@@ -106,6 +106,13 @@ public:
 		// fill the hole with given value
 		arr[idx] = value;
 	}
+	void rotate_right()
+	{
+		for (int i = size - 1; i > 0; i--)
+		{
+			swap(arr[i], arr[i - 1]);
+		}
+	}
 	~Vector()
 	{
 		delete[] arr;
@@ -120,14 +127,14 @@ int main()
 
 	int n = 5;
 	Vector v(n);
-	v.set(0, 10);
-	v.set(1, 8);
-	v.set(2, 7);
-	v.set(3, 5);
-	v.set(4, 3);
+	v.set(0, 0);
+	v.set(1, 1);
+	v.set(2, 2);
+	v.set(3, 3);
+	v.set(4, 4);
 
 	v.print();
-	v.insert(2, 17);
+	v.rotate_right();
 	v.print();
 	return 0;
 }
