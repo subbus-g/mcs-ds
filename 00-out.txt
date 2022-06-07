@@ -1,4 +1,10 @@
 15
 15
 15
-15
+1511869858080x446bff750
+node 1 pointer address  0x446bff750
+address node pointing to  0x105147a1780
+address of node1->data  0x105147a1780
+address of node1->next  0x105147a1788
+address of node1->data is 343545728
+address of node1->next is 343545736
