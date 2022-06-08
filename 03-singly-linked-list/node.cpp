@@ -33,23 +33,18 @@ int main()
 	cout << node1->next->next->next->data << endl;
 	cout << node2->next->next->data << endl;
 	cout << node3->next->data << endl;
-	cout << node4->data;
+	cout << node4->data << endl;
 
-	// Node* head=node1;
-	// cout<<&head;
-	printf("%u", &node1);
-	cout << &node1 << endl;
-	cout << "node 1 pointer address  " << std::dec << &node1 << endl;
-	cout << "address node pointing to  " << node1 << endl;
-	cout << "address of node1->data  " << &(node1->data) << endl;
-	cout << "address of node1->next`  " << &(node1->next) << endl;
+	// we have four unique address here
+	//but only last one is important
+	printf("1.address of node pointer  : %u\n", &node1);
+	printf("---------------------------------------\n");
+	printf("2.address of the node      : %u\n", node1);
+	printf("2.address of node->data    : %u\n", &(node1->data));
+	printf("---------------------------------------\n");
+	printf("3.address of node->next    : %u\n", &(node1->next));
+	printf("---------------------------------------\n");
+	printf("4.address of next node is  : %u\n", (node1->next));
 
-	printf("address of node1->data is %u\n", &(node1->data));
-	printf("address of node1->next is %u\n", &(node1->next));
-
-	// int arr[4] = {1, 2, 3, 4};
-	// printf("%u\n", arr);
-	// printf("%u\n", &arr[0]);
-	// printf("%u\n", &arr[1]);
 	return 0;
 }
