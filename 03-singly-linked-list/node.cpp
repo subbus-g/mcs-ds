@@ -38,10 +38,6 @@ void print_reverse_recursive(Node *head)
 	print_reverse_recursive(head->next);
 	cout << head->data << " ";
 }
-Node* find(int value)
-{
-	for(auto ptr)
-}
 int main()
 {
 	// comment these 2 lines for console I/O rather than file I/O
@@ -65,8 +61,6 @@ int main()
 	print_recursive(node1);
 
 	print_reverse_recursive(node1);
-
-	find(8);
 
 	// // accessing node 15;
 	// cout << node1->next->next->next->data << endl;
