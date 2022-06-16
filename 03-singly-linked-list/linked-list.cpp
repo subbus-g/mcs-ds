@@ -27,15 +27,17 @@ public:
 	}
 	void insert_end(int x)
 	{
-		auto new_node = new Node(x);
 		if (!head)
 		{
-			head =tail= new_node;
-			tail->next = nullptr;
+			head = new Node(x);
+			tail = head;
+			head->next = nullptr;
 			return;
 		}
+		auto new_node = new Node(x);
 		tail->next = new_node;
-		tail = new_node;
+		tail = tail->next;
+		tail->next = nullptr;
 	}
 };
 
