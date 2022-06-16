@@ -44,13 +44,25 @@ public:
 		int pos = 0;
 		for (auto ptr = head; ptr; ptr = ptr->next)
 		{
-			//if current position is given n
+			// if current position is given n
 			if (++pos == n)
 			{
 				return ptr;
 			}
 		}
 		return nullptr;
+	}
+	int search(int value)
+	{
+		int index = 0;
+		for (Node *ptr = head; ptr; ptr = ptr->next, index++)
+		{
+			if (ptr->data == value)
+			{
+				return index;
+			}
+		}
+		return -1;
 	}
 };
 
@@ -67,19 +79,10 @@ int main()
 	ll.insert_end(15);
 	ll.print();
 
-	auto found_node = ll.get_nth_item(1);
-	cout << (found_node ? found_node->data : -1) << endl;
-
-	found_node = ll.get_nth_item(2);
-	cout << (found_node ? found_node->data : -1) << endl;
-
-	found_node = ll.get_nth_item(3);
-	cout << (found_node ? found_node->data : -1) << endl;
-
-	found_node = ll.get_nth_item(4);
-	cout << (found_node ? found_node->data : -1) << endl;
-
-	found_node = ll.get_nth_item(5);
-	cout << (found_node ? found_node->data : -1) << endl;
+	cout << ll.search(6) << endl;
+	cout << ll.search(10) << endl;
+	cout << ll.search(8) << endl;
+	cout << ll.search(15) << endl;
+	cout << ll.search(99);
 	return 0;
 }
