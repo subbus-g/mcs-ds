@@ -82,6 +82,24 @@ public:
 		}
 		return -1;
 	}
+	int improved_search_using_previous(int value)
+	{
+		int index = 0;
+		for (Node *prev = nullptr, *curr = head; curr; prev = curr, curr = curr->next, index++)
+		{
+
+			if (curr->data == value)
+			{
+				if (!prev)
+				{
+					return 0;
+				}
+				swap(curr->data, prev->data);
+				return index - 1;
+			}
+		}
+		return -1;
+	}
 };
 
 int main()
@@ -97,8 +115,12 @@ int main()
 	ll.insert_end(15);
 	ll.print();
 
-	cout << ll.improved_search(6) << endl;
-	cout << ll.improved_search(15) << endl;
-	
+	// cout << ll.improved_search(6) << endl;
+	// cout << ll.improved_search(15) << endl;
+
+	cout << "improved search using prev pointer" << endl;
+	cout << ll.improved_search_using_previous(6) << endl;
+	cout << ll.improved_search_using_previous(15) << endl;
+
 	return 0;
 }

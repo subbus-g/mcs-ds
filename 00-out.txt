@@ -1,3 +1,4 @@
 6 10 8 15 
+improved search using prev pointer
 0
 2
