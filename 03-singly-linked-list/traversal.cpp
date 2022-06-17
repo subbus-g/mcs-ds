@@ -64,6 +64,24 @@ public:
 		}
 		return -1;
 	}
+
+	int improved_search(int value)
+	{
+		int index = 0;
+		if (head->data == value)
+		{
+			return 0;
+		}
+		for (auto ptr = head; ptr->next; ptr = ptr->next, index++)
+		{
+			if (ptr->next->data == value)
+			{
+				swap(ptr->data, ptr->next->data);
+				return index;
+			}
+		}
+		return -1;
+	}
 };
 
 int main()
@@ -79,10 +97,8 @@ int main()
 	ll.insert_end(15);
 	ll.print();
 
-	cout << ll.search(6) << endl;
-	cout << ll.search(10) << endl;
-	cout << ll.search(8) << endl;
-	cout << ll.search(15) << endl;
-	cout << ll.search(99);
+	cout << ll.improved_search(6) << endl;
+	cout << ll.improved_search(15) << endl;
+	
 	return 0;
 }
