@@ -41,14 +41,12 @@ public:
 	}
 	~LinkedList()
 	{
-		Node *prev = nullptr;
-		for (auto ptr = head; ptr; ptr = ptr->next)
+		//store the next node address before deleting head
+		while (head)
 		{
-			if (prev)
-			{
-				delete prev;
-			}
-			prev = ptr;
+			Node *next = head->next;
+			delete head;
+			head = next;
 			cout << "destroyed!" << endl;
 		}
 	}
