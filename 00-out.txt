@@ -1,6 +1,2 @@
-
 6 10 8 15 
-destroyed!
-destroyed!
-destroyed!
-destroyed!
+1 5 7 6 10 8 15 
