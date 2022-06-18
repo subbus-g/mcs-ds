@@ -1,2 +1,5 @@
-3 2 1 
-The value at Tail node is: 1
+6 10 8 15 
+10 8 15 
+8 15 
+15 
+
