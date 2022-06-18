@@ -44,14 +44,17 @@ public:
 		tail = tail->next;
 		tail->next = nullptr;
 	}
+	void delete_first()
+	{
+		auto node_to_delete = head;
+		head = head->next;
+		delete node_to_delete;
+	}
 	void delete_nth_node(int n)
 	{
 		if (n == 1)
 		{
-			auto node_to_delete = head;
-			head = head->next;
-			delete node_to_delete;
-			return;
+			delete_first();
 		}
 		int position = 0;
 		Node *ptr;

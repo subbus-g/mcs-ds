@@ -1,4 +1,2 @@
 empty linked list
 6 10 8 15 
-10 8 15 
-10 15 
