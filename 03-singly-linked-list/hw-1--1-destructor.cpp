@@ -39,7 +39,7 @@ public:
 		tail = tail->next;
 		tail->next = nullptr;
 	}
-	~LinkedList()
+	~LinkedList()//O(n)-time, O(1)-memory
 	{
 		//store the next node address before deleting head
 		while (head)

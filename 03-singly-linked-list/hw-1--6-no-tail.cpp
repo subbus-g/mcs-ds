@@ -16,7 +16,7 @@ private:
 	Node *head{};
 
 public:
-	void print()
+	void print() // O(n)-time, O(1)-memory
 	{
 		for (auto ptr = head; ptr; ptr = ptr->next)
 		{
@@ -24,13 +24,13 @@ public:
 		}
 		cout << endl;
 	}
-	void add_element(int value)
+	void add_element(int value) // O(1)-time, O(1)-memory
 	{
 		auto new_node = new Node(value);
 		new_node->next = head;
 		head = new_node;
 	}
-	Node *get_tail()
+	Node *get_tail()//O(n)-time, O(1)-memory
 	{
 		Node *ptr;
 		//traverse upto the lastnode

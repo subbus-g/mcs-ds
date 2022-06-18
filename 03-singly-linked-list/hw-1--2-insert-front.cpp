@@ -39,7 +39,7 @@ public:
 		tail = tail->next;
 		tail->next = nullptr;
 	}
-	void insert_front(int x)
+	void insert_front(int x)//O(1)-time, O(1)-memory
 	{
 		auto new_node = new Node(x);
 		new_node->next = head;

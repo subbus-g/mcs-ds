@@ -25,7 +25,7 @@ public:
 		}
 		cout << endl;
 	}
-	void insert_end(int x)
+	void insert_end(int x) // O(n)-time, O(1)-memory
 	{
 		if (!head)
 		{

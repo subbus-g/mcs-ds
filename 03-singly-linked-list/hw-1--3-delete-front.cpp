@@ -51,7 +51,7 @@ public:
 	// store the node to delete in new variable
 	// point the head to its next node
 	// delete the node using new variable
-	void delete_front()
+	void delete_front()//O(1)-time, O(1)-memory
 	{
 		auto node_to_delete = head;
 		head = head->next;

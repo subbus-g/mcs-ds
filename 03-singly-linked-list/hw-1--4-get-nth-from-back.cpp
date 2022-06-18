@@ -39,7 +39,7 @@ public:
 		tail = tail->next;
 		tail->next = nullptr;
 	}
-	int get_nth_from_back(int x)
+	int get_nth_from_back(int x)//O(n)-time, O(1)-memory
 	{
 		int length = 0;
 		for (auto ptr = head; ptr; ptr = ptr->next)
