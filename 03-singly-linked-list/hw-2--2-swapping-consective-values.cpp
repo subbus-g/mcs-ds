@@ -39,7 +39,7 @@ public:
 		tail = tail->next;
 		tail->next = nullptr;
 	}
-	void swap_consective_pairs()
+	void swap_consective_pairs() //O(n) - time, O(1) - memory
 	{
 		for (auto ptr = head; ptr && ptr->next; ptr = ptr->next->next)
 		{

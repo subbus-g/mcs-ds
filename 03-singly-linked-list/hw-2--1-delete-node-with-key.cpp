@@ -73,7 +73,7 @@ public:
 		ptr->next = ptr->next->next;
 		delete node_to_delete;
 	}
-	void delete_node_with_key(int value)
+	void delete_node_with_key(int value)//O(n)-time, O(1)-memory
 	{
 		int postion = 1;
 		for (auto ptr = head; ptr; ptr = ptr->next, ++postion)
