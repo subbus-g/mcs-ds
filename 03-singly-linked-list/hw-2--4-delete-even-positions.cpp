@@ -48,8 +48,13 @@ public:
 		{
 			auto node_to_delete = ptr->next;
 			ptr->next = ptr->next->next;
+			if(node_to_delete==tail)
+			{
+				tail = ptr;
+			}
 			delete node_to_delete;
 		}
+		//cout << "tail is " << tail->data << endl;
 	}
 };
 
@@ -66,8 +71,8 @@ int main()
 	ll.insert_end(3);
 	ll.insert_end(4);
 	// ll.insert_end(10);
-	ll.insert_end(5);
-	ll.insert_end(6);
+	// ll.insert_end(5);
+	// ll.insert_end(6);
 
 	ll.print();
 	ll.delete_even_positions();
