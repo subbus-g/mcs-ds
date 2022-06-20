@@ -39,7 +39,7 @@ public:
 		tail = tail->next;
 		tail->next = nullptr;
 	}
-	void reverse_list_nodes()
+	void reverse_list_nodes() // O(n)-time, O(1)-memory
 	{
 		Node *curr, *prev, *backup;
 		for (prev = head, curr = head->next; curr; prev = curr, curr = backup)
@@ -49,6 +49,22 @@ public:
 		}
 		head->next = nullptr;
 		head = prev;
+	}
+	void reverse_list_nodes_using_tail() // O(n)-time, O(1)-memory
+	{
+		tail = head;
+		auto prev = head;
+		head = head->next;
+		auto next = head;
+		while (head)
+		{
+			next = head->next;
+			head->next = prev;
+			prev = head;
+			head = next;
+		}
+		head = prev;
+		tail->next = nullptr;
 	}
 };
 
@@ -60,12 +76,12 @@ int main()
 
 	LinkedList ll;
 	ll.print();
-	ll.insert_end(6);
-	ll.insert_end(10);
-	ll.insert_end(8);
-	ll.insert_end(15);
+	ll.insert_end(1);
+	ll.insert_end(2);
+	ll.insert_end(3);
+	ll.insert_end(4);
 	ll.print();
-	ll.reverse_list_nodes();
+	ll.reverse_list_nodes_using_tail();
 	ll.print();
 	return 0;
 }
