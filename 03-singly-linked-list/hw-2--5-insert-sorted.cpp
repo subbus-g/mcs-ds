@@ -25,7 +25,7 @@ public:
 		}
 		cout << endl;
 	}
-	void insert_sorted(int x)//O(n)-time, O(1)-memory
+	void insert_sorted(int x) // O(n)-time, O(1)-memory
 	{
 		Node *prev = head;
 		Node *curr = head;
@@ -40,13 +40,7 @@ public:
 			head = new_node;
 			return;
 		}
-		// insertion at end
-		if (!curr)
-		{
-			prev->next = new_node;
-			return;
-		}
-		// insertion at middle
+		// insertion at remaining positions
 		prev->next = new_node;
 		new_node->next = curr;
 	}
