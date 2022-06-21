@@ -24,12 +24,15 @@ public:
 			cout << ptr->data << " ";
 		}
 		cout << endl;
+		// cout << "tail: " << tail->data << endl;
 	}
 	void insert_sorted(int x) // O(n)-time, O(1)-memory
 	{
 		Node *prev = head;
 		Node *curr = head;
 		auto new_node = new Node(x);
+
+		// finding required position for insertion
 		for (; (curr && curr->data < x); prev = curr, curr = curr->next)
 		{
 		}
@@ -37,12 +40,18 @@ public:
 		if (prev == curr && curr == head)
 		{
 			new_node->next = prev;
+			if (!head)
+				tail = new_node;
 			head = new_node;
-			return;
 		}
 		// insertion at remaining positions
-		prev->next = new_node;
-		new_node->next = curr;
+		else
+		{
+			prev->next = new_node;
+			new_node->next = curr;
+			if (!curr)
+				tail = new_node;
+		}
 	}
 };
 
@@ -53,7 +62,6 @@ int main()
 	freopen("..\\00-out.txt", "w", stdout);
 
 	LinkedList ll;
-	ll.print();
 	ll.insert_sorted(10);
 	ll.print();
 	ll.insert_sorted(2);
