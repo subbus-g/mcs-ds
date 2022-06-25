@@ -15,6 +15,7 @@ class LinkedList
 private:
 	Node *head{};
 	Node *tail{};
+	int length{};
 
 public:
 	void print()
@@ -27,6 +28,7 @@ public:
 	}
 	void insert_end(int x) // O(n)-time, O(1)-memory
 	{
+		length++;
 		if (!head)
 		{
 			head = new Node(x);
@@ -41,6 +43,8 @@ public:
 	}
 	void left_rotate(int k)
 	{
+		//remove un necessary cycles
+		k %= length;
 		int i;
 		Node *head_backup, *ptr;
 		head_backup = head;
