@@ -40,7 +40,7 @@ public:
 		tail = tail->next;
 		tail->next = nullptr;
 	}
-	void remove_duplicates() // O(n)-time, O(1)-memory
+	void remove_duplicates() // O(n)-time, O(n)-memory
 	{
 		unordered_set<int> unique_numbers;
 		Node *pre, *ptr;
