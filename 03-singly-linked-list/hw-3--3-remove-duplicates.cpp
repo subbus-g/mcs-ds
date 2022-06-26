@@ -47,22 +47,51 @@ public:
 		pre = ptr = head;
 		while (ptr)
 		{
-			//if the number is duplicate
+			// if the number is duplicate
 			if (unique_numbers.find(ptr->data) != end(unique_numbers))
 			{
-				//delete it
+				// delete it
 				auto node_to_delete = ptr;
 				ptr = ptr->next;
 				pre->next = ptr;
 				delete node_to_delete;
 			}
-			//if the number is not duplicate
+			// if the number is not duplicate
 			else
 			{
-				//add it to the list of unique numbers
+				// add it to the list of unique numbers
 				unique_numbers.insert(ptr->data);
 				pre = ptr;
 				ptr = ptr->next;
+			}
+		}
+	}
+	void remove_duplicates_2() // O(n^2)-time, O(1)-memory
+	{
+		// condition for i be not null for tc 3
+		// after first iteration, there will be only one node
+		// then i->next->next leads to seg fault
+		// similarly i->next for tc 4, only 2 nodes left after 1st iteration
+		//i->next->next leads to sig fault
+		for (auto i = head; i && i->next && i->next->next; i = i->next)
+		{
+			// cout << "i is at " << i->data << endl;
+			auto prev = i;
+			for (auto j = i->next; j;)
+			{
+				// cout << "		j is at " << j->data << endl;
+				if (i->data == j->data)
+				{
+					auto node_to_delete = j;
+					j = j->next;
+					prev->next = j;
+					delete node_to_delete;
+				}
+				else
+				{
+					prev = j;
+					j = j->next;
+				}
 			}
 		}
 	}
@@ -74,35 +103,50 @@ int main()
 	freopen("..\\00-in.txt", "r", stdin);
 	freopen("..\\00-out.txt", "w", stdout);
 
-	LinkedList ll;
-	ll.print();
+	// tc 1
+	LinkedList ll_1;
+	ll_1.insert_end(1);
+	ll_1.insert_end(2);
+	ll_1.insert_end(1);
+	ll_1.insert_end(3);
+	ll_1.insert_end(2);
+	ll_1.insert_end(4);
+	ll_1.insert_end(3);
+	ll_1.insert_end(5);
+	ll_1.insert_end(2);
+	ll_1.print();
+	ll_1.remove_duplicates_2();
+	ll_1.print();
 
-	//tc 1
-	ll.insert_end(1);
-	ll.insert_end(2);
-	ll.insert_end(1);
-	ll.insert_end(3);
-	ll.insert_end(2);
-	ll.insert_end(4);
-	ll.insert_end(3);
-	ll.insert_end(5);
-	ll.insert_end(2);
+	// tc2
+	LinkedList ll_2;
+	ll_2.insert_end(1);
+	ll_2.insert_end(2);
+	ll_2.insert_end(3);
+	ll_2.insert_end(4);
+	ll_2.insert_end(5);
+	ll_2.print();
+	ll_2.remove_duplicates_2();
+	ll_2.print();
 
-	//tc 2
-	// ll.insert_end(1);
-	// ll.insert_end(2);
-	// ll.insert_end(3);
-	// ll.insert_end(4);
-	// ll.insert_end(5);
+	// tc3
+	LinkedList ll_3;
+	ll_3.insert_end(1);
+	ll_3.insert_end(1);
+	ll_3.insert_end(1);
+	ll_3.print();
+	ll_3.remove_duplicates_2();
+	ll_3.print();
 
-	//tc 3
-	// ll.insert_end(1);
-	// ll.insert_end(1);
-	// ll.insert_end(1);
+	// tc4
+	LinkedList ll_4;
+	ll_4.insert_end(1);
+	ll_4.insert_end(2);
+	ll_4.insert_end(1);
+	ll_4.insert_end(1);
+	ll_4.print();
+	ll_4.remove_duplicates_2();
+	ll_4.print();
 
-
-	ll.print();
-	ll.remove_duplicates();
-	ll.print();
 	return 0;
 }
