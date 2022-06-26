@@ -40,7 +40,7 @@ public:
 		tail = tail->next;
 		tail->next = nullptr;
 	}
-	void remove_duplicates() // O(n)-time, O(n)-memory
+	void remove_duplicates_1() // O(n)-time, O(n)-memory
 	{
 		unordered_set<int> unique_numbers;
 		Node *pre, *ptr;
@@ -54,6 +54,10 @@ public:
 				auto node_to_delete = ptr;
 				ptr = ptr->next;
 				pre->next = ptr;
+				if (tail == node_to_delete)
+				{
+					tail = pre;
+				}
 				delete node_to_delete;
 			}
 			// if the number is not duplicate
@@ -65,6 +69,8 @@ public:
 				ptr = ptr->next;
 			}
 		}
+		//tail check
+		cout << "tail for below list is:" << tail->data << endl;
 	}
 	void remove_duplicates_2() // O(n^2)-time, O(1)-memory
 	{
@@ -72,7 +78,7 @@ public:
 		// after first iteration, there will be only one node
 		// then i->next->next leads to seg fault
 		// similarly i->next for tc 4, only 2 nodes left after 1st iteration
-		//i->next->next leads to sig fault
+		// i->next->next leads to sig fault
 		for (auto i = head; i && i->next && i->next->next; i = i->next)
 		{
 			// cout << "i is at " << i->data << endl;
@@ -115,8 +121,9 @@ int main()
 	ll_1.insert_end(5);
 	ll_1.insert_end(2);
 	ll_1.print();
-	ll_1.remove_duplicates_2();
+	ll_1.remove_duplicates_1();
 	ll_1.print();
+	cout << "----------------------------" << endl;
 
 	// tc2
 	LinkedList ll_2;
@@ -126,8 +133,9 @@ int main()
 	ll_2.insert_end(4);
 	ll_2.insert_end(5);
 	ll_2.print();
-	ll_2.remove_duplicates_2();
+	ll_2.remove_duplicates_1();
 	ll_2.print();
+	cout << "----------------------------" << endl;
 
 	// tc3
 	LinkedList ll_3;
@@ -135,8 +143,9 @@ int main()
 	ll_3.insert_end(1);
 	ll_3.insert_end(1);
 	ll_3.print();
-	ll_3.remove_duplicates_2();
+	ll_3.remove_duplicates_1();
 	ll_3.print();
+	cout << "----------------------------" << endl;
 
 	// tc4
 	LinkedList ll_4;
@@ -145,8 +154,9 @@ int main()
 	ll_4.insert_end(1);
 	ll_4.insert_end(1);
 	ll_4.print();
-	ll_4.remove_duplicates_2();
+	ll_4.remove_duplicates_1();
 	ll_4.print();
+	cout << "----------------------------" << endl;
 
 	return 0;
 }
