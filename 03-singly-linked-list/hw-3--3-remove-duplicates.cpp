@@ -69,7 +69,7 @@ public:
 				ptr = ptr->next;
 			}
 		}
-		//tail check
+		// tail check
 		cout << "tail for below list is:" << tail->data << endl;
 	}
 	void remove_duplicates_2() // O(n^2)-time, O(1)-memory
@@ -91,6 +91,10 @@ public:
 					auto node_to_delete = j;
 					j = j->next;
 					prev->next = j;
+					if (node_to_delete == tail)
+					{
+						tail = prev;
+					}
 					delete node_to_delete;
 				}
 				else
@@ -100,6 +104,8 @@ public:
 				}
 			}
 		}
+		// tail check
+		cout << "tail for below list is:" << tail->data << endl;
 	}
 };
 
@@ -121,7 +127,7 @@ int main()
 	ll_1.insert_end(5);
 	ll_1.insert_end(2);
 	ll_1.print();
-	ll_1.remove_duplicates_1();
+	ll_1.remove_duplicates_2();
 	ll_1.print();
 	cout << "----------------------------" << endl;
 
@@ -133,7 +139,7 @@ int main()
 	ll_2.insert_end(4);
 	ll_2.insert_end(5);
 	ll_2.print();
-	ll_2.remove_duplicates_1();
+	ll_2.remove_duplicates_2();
 	ll_2.print();
 	cout << "----------------------------" << endl;
 
@@ -143,7 +149,7 @@ int main()
 	ll_3.insert_end(1);
 	ll_3.insert_end(1);
 	ll_3.print();
-	ll_3.remove_duplicates_1();
+	ll_3.remove_duplicates_2();
 	ll_3.print();
 	cout << "----------------------------" << endl;
 
@@ -154,7 +160,7 @@ int main()
 	ll_4.insert_end(1);
 	ll_4.insert_end(1);
 	ll_4.print();
-	ll_4.remove_duplicates_1();
+	ll_4.remove_duplicates_2();
 	ll_4.print();
 	cout << "----------------------------" << endl;
 
