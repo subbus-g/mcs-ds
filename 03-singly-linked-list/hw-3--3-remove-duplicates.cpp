@@ -74,12 +74,9 @@ public:
 	}
 	void remove_duplicates_2() // O(n^2)-time, O(1)-memory
 	{
-		// condition for i be not null for tc 3
-		// after first iteration, there will be only one node
-		// then i->next->next leads to seg fault
-		// similarly i->next for tc 4, only 2 nodes left after 1st iteration
-		// i->next->next leads to sig fault
-		for (auto i = head; i && i->next && i->next->next; i = i->next)
+		//no need to test for i->next->next, i-next for tc 3,4
+		//as after 1st iteration duplicates are removed
+		for (auto i = head; i; i = i->next)
 		{
 			// cout << "i is at " << i->data << endl;
 			auto prev = i;
