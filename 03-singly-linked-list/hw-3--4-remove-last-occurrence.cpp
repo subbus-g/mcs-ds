@@ -40,10 +40,10 @@ public:
 		tail = tail->next;
 		tail->next = nullptr;
 	}
+	// if there is only 1 occurence then delete itself
 	void delete_last_occurrence(int key) // O(n) time - O(1) memory
 	{
 		cout << "key:" << key << endl;
-		int freq = 0;
 		Node *last_occurred_node = nullptr;
 		// traverse the list and assign the last_occured_node with latesh matched node
 		// count the frequency of the key as well
@@ -51,7 +51,6 @@ public:
 		{
 			if (ptr->data == key)
 			{
-				freq++;
 				last_occurred_node = ptr;
 			}
 		}
@@ -62,12 +61,24 @@ public:
 		// traverse list again and remove the last_occurred_node
 		for (auto ptr = head; ptr && ptr->next; ptr = ptr->next)
 		{
-			if (freq > 1 && ptr->next == last_occurred_node)
+			if (head == last_occurred_node)
+			{
+				head = head->next;
+				delete last_occurred_node;
+				// cout << "tail for below list: " << tail->data << endl;
+				return;
+			}
+			if (ptr->next == last_occurred_node)
 			{
 				ptr->next = ptr->next->next;
+				if (tail == last_occurred_node)
+				{
+					tail = ptr;
+				}
 				delete last_occurred_node;
 			}
 		}
+		// cout << "tail for below list: " << tail->data << endl;
 	}
 };
 
