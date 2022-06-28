@@ -40,15 +40,18 @@ public:
 		tail = tail->next;
 		tail->next = nullptr;
 	}
-	void move_key_occurance_to_end(int key)
+	void move_key_occurance_to_end(int key) // O(n)-time, O(1)-memory
 	{
 		cout << "key: " << key << endl;
 		// cout << "tail for below list: " << tail->data << endl;
 		Node *pre, *cur;
 		pre = cur = head;
 		auto old_tail = tail;
+		// iterate till old_tail only
+		// otherwise it will loop infinitely
 		while (cur != old_tail)
 		{
+			// if key matched, move it to end
 			if (cur->data == key)
 			{
 				auto node_to_move = cur;
@@ -62,7 +65,7 @@ public:
 					cur = cur->next;
 					pre->next = cur;
 				}
-
+				// attach next to tail and make new node as tail
 				tail->next = node_to_move;
 				tail = node_to_move;
 				tail->next = nullptr;
