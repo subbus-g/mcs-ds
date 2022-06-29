@@ -39,17 +39,20 @@ public:
 		tail = tail->next;
 		tail->next = nullptr;
 	}
-	int get_list_max(Node *curr = nullptr, bool is_head = true) // O(n)-time, O(1)-memory
+	// O(n)-time,
+	// O(n)-memory as new stack is created for every call
+	int max(Node *curr = nullptr, bool is_head = true)
 	{
-		if (!curr && !is_head)
+		// if curr is nullptr
+		if (!curr)
 		{
-			return -1;
-		}
-		if (is_head)
-		{
+			// if terminating null ptr
+			if (!is_head)
+				return INT_MIN;
+			// initial call from main
 			curr = head;
 		}
-		return max(curr->data, get_list_max(curr->next, false));
+		return std::max(curr->data, this->max(curr->next, false));
 	}
 };
 
@@ -65,6 +68,6 @@ int main()
 	ll.insert_end(8);
 	ll.insert_end(15);
 	ll.print();
-	cout << ll.get_list_max();
+	cout << ll.max();
 	return 0;
 }
