@@ -39,7 +39,7 @@ public:
 		tail = tail->next;
 		tail->next = nullptr;
 	}
-	void arrange_odd_even_nodes()
+	void arrange_odd_even_nodes() // O(n)-time, O(1)-memory
 	{
 		Node *prev, *curr, *old_tail;
 		int position;
@@ -49,14 +49,16 @@ public:
 			// if the position is even
 			if (position % 2 == 0)
 			{
+				//remove it from there
 				auto node_to_move = curr;
 				curr = curr->next;
 				prev->next = curr;
-				// move the even node to back
+				// move it to the back of the list
 				tail->next = node_to_move;
 				tail = node_to_move;
 				tail->next = nullptr;
 			}
+			//if the position is odd, move on to next nodes
 			else
 			{
 				prev = curr;
