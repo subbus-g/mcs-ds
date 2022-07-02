@@ -49,19 +49,18 @@ public:
 			auto node_to_insert = new Node(ptr2->data);
 			ptr1->next = node_to_insert;
 			node_to_insert->next = old_next;
-			tail = node_to_insert;
+			if (ptr1 == tail)
+			{
+				tail = node_to_insert;
+			}
 			ptr1 = old_next;
 			ptr2 = ptr2->next;
 		}
-		if (ptr2)
+		for (; ptr2;ptr2=ptr2->next)
 		{
-			while (ptr2)
-			{
-				auto new_node = new Node(ptr2->data);
-				tail->next = new_node;
-				tail = new_node;
-				ptr2 = ptr2->next;
-			}
+			auto node_to_insert = new Node(ptr2->data);
+			tail->next = node_to_insert;
+			tail = node_to_insert;
 		}
 	}
 };
@@ -77,9 +76,12 @@ int main()
 	list_1.insert_end(1);
 	list_1.insert_end(2);
 	list_1.insert_end(3);
-	list_1.insert_end(4);
+
+	LinkedList another_1;
+	another_1.insert_end(4);
 	list_1.print();
-	// list_1.arrange_odd_even_nodes();
+	another_1.print();
+	list_1.insert_alternate(another_1);
 	list_1.print();
 	cout << "----------------------------" << endl;
 
