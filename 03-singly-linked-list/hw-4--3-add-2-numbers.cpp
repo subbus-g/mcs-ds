@@ -49,6 +49,11 @@ public:
 			carry = ptr1->data / 10;
 			ptr1->data %= 10;
 		}
+		if (ptr1 && carry)
+		{
+			ptr1->data += carry;
+			carry = 0;
+		}
 		for (; ptr2; ptr2 = ptr2->next)
 		{
 			auto new_node = new Node(ptr2->data + carry);
@@ -167,31 +172,31 @@ int main()
 		cout << expected << endl;
 		cout << "----------------------------" << endl;
 	}
-	// // tc5
-	// {
-	// 	LinkedList list1;
-	// 	list1.insert_end(9);
-	// 	list1.insert_end(6);
-	// 	list1.insert_end(5);
+	// tc5
+	{
+		LinkedList list1;
+		list1.insert_end(9);
+		list1.insert_end(6);
+		list1.insert_end(5);
 
-	// 	LinkedList list2;
-	// 	list2.insert_end(8);
-	// 	list2.insert_end(7);
-	// 	list2.insert_end(6);
-	// 	list2.insert_end(4);
-	// 	list2.insert_end(5);
-	// 	list2.insert_end(7);
-	// 	list2.insert_end(8);
-	// 	list2.insert_end(9);
+		LinkedList list2;
+		list2.insert_end(8);
+		list2.insert_end(7);
+		list2.insert_end(6);
+		list2.insert_end(4);
+		list2.insert_end(5);
+		list2.insert_end(7);
+		list2.insert_end(8);
+		list2.insert_end(9);
 
-	// 	list1.print();
-	// 	list2.print();
-	// 	list2.add_num(list1);
+		list1.print();
+		list2.print();
+		list2.add_num(list1);
 
-	// 	list2.print();
-	// 	string expected = "7 4 2 5 5 7 8 9";
-	// 	cout << expected << endl;
-	// 	cout << "----------------------------" << endl;
-	// }
+		list2.print();
+		string expected = "7 4 2 5 5 7 8 9";
+		cout << expected << endl;
+		cout << "----------------------------" << endl;
+	}
 	return 0;
 }
