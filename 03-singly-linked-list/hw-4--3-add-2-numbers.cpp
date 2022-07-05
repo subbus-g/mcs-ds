@@ -43,17 +43,21 @@ public:
 	{
 		Node *ptr1, *ptr2;
 		int carry = 0;
+		// traverse until there is a number in both lists
 		for (ptr1 = head, ptr2 = another.head; ptr1 && ptr2; ptr1 = ptr1->next, ptr2 = ptr2->next)
 		{
 			ptr1->data += ptr2->data + carry;
 			carry = ptr1->data / 10;
 			ptr1->data %= 10;
 		}
+		// if there is a carry and add it to the number before joining another list numbers
 		if (ptr1 && carry)
 		{
 			ptr1->data += carry;
 			carry = 0;
 		}
+
+		// traverse and add remaining elements of another to current list
 		for (; ptr2; ptr2 = ptr2->next)
 		{
 			auto new_node = new Node(ptr2->data + carry);
@@ -66,6 +70,7 @@ public:
 			tail->next = new_node;
 			tail = new_node;
 		}
+
 		if (carry)
 		{
 			auto new_node = new Node(carry);
@@ -198,5 +203,27 @@ int main()
 		cout << expected << endl;
 		cout << "----------------------------" << endl;
 	}
+	// // tc6
+	// {
+	// 	LinkedList list1;
+
+	// 	list1.insert_end(1);
+	// 	list1.insert_end(2);
+	// 	list1.insert_end(9);
+
+	// 	LinkedList list2;
+
+	// 	list2.insert_end(3);
+	// 	list2.insert_end(9);
+
+	// 	list1.print();
+	// 	list2.print();
+	// 	list1.add_num(list2);
+
+	// 	list1.print();
+	// 	string expected = "4 1 0 1";
+	// 	cout << expected << endl;
+	// 	cout << "----------------------------" << endl;
+	// }
 	return 0;
 }
