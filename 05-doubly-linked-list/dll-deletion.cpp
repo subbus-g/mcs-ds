@@ -86,7 +86,41 @@ public:
 		delete tail->next;
 		tail->next = nullptr;
 	}
-	
+	DNode *delete_link(DNode *cur)
+	{
+		cur->prev->next = cur->next;
+		cur->next->prev = cur->prev;
+		auto node_to_delete = cur;
+		cur = cur->prev;
+		delete node_to_delete;
+		return cur;
+	}
+	void delete_node_with_key(int value)
+	{
+		if (!head)
+		{
+			return;
+		}
+		DNode *ptr;
+		for (ptr = head; ptr && (ptr->data != value); ptr = ptr->next)
+		{
+		}
+		if (!ptr)
+		{
+			return;
+		}
+		if (ptr == head)
+		{
+			delete_front();
+			return;
+		}
+		if (ptr == tail)
+		{
+			delete_end();
+			return;
+		}
+		ptr = delete_link(ptr);
+	}
 };
 
 int main()
@@ -102,15 +136,26 @@ int main()
 	dll.insert_end(8);
 	dll.insert_end(15);
 	dll.print();
-	dll.delete_end();
+	// dll.delete_end();
+	// dll.print();
+	// dll.delete_end();
+	// dll.print();
+	// dll.delete_end();
+	// dll.print();
+	// dll.delete_end();
+	// dll.print();
+	// dll.delete_end();
+	// dll.print();
+
+	dll.delete_node_with_key(6);
 	dll.print();
-	dll.delete_end();
+	dll.delete_node_with_key(8);
 	dll.print();
-	dll.delete_end();
+	dll.delete_node_with_key(15);
 	dll.print();
-	dll.delete_end();
+	dll.delete_node_with_key(10);
 	dll.print();
-	dll.delete_end();
+	dll.delete_node_with_key(10);
 	dll.print();
 	return 0;
 }
