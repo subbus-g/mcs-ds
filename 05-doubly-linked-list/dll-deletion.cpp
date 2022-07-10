@@ -5,7 +5,7 @@ struct DNode
 {
 	int data;
 	DNode *prev, *next;
-	DNode() : prev(nullptr), data(-1), next(nullptr)
+	DNode() : prev(nullptr), data(0), next(nullptr)
 	{
 	}
 	DNode(int data) : prev(nullptr), data(data), next(nullptr)
@@ -26,6 +26,7 @@ class DLinkedList
 private:
 	DNode *head{};
 	DNode *tail{};
+	DNode *sentinel = new DNode(-1);
 
 public:
 	void print()
@@ -69,6 +70,23 @@ public:
 		delete head->prev;
 		head->prev = nullptr;
 	}
+	void delete_end()
+	{
+		if (!head)
+		{
+			return;
+		}
+		if (!head->next)
+		{
+			delete tail;
+			head = tail = nullptr;
+			return;
+		}
+		tail = tail->prev;
+		delete tail->next;
+		tail->next = nullptr;
+	}
+	
 };
 
 int main()
@@ -84,15 +102,15 @@ int main()
 	dll.insert_end(8);
 	dll.insert_end(15);
 	dll.print();
-	dll.delete_front();
+	dll.delete_end();
 	dll.print();
-	dll.delete_front();
+	dll.delete_end();
 	dll.print();
-	dll.delete_front();
+	dll.delete_end();
 	dll.print();
-	dll.delete_front();
+	dll.delete_end();
 	dll.print();
-	dll.delete_front();
+	dll.delete_end();
 	dll.print();
 	return 0;
 }
