@@ -21,7 +21,7 @@ struct DNode
 	{
 	}
 };
-class DLinkedList
+class LinkedList
 {
 private:
 	DNode *head{};
@@ -53,24 +53,37 @@ public:
 			tail = tail->next;
 		}
 	}
-	void delete_all(int key)
+	void delete_all_nodes_with_key(int key)
 	{
 		DNode *cur;
 		for (cur = head; cur; cur = cur->next)
 		{
+			// if key is found
+			// arrange the links first
+			// then delete the key nodek
 			if (cur->data == key)
 			{
 				auto node_to_delete = cur;
+				// if key is in head position
 				if (node_to_delete == head)
 				{
+					if (!head->next)
+					{
+						head = tail = nullptr;
+						break;
+					}
 					head = head->next;
 					head->prev = nullptr;
+					cur = new DNode(-11, head);
 				}
+				// if key is in tail positon
 				else if (node_to_delete == tail)
 				{
 					tail = tail->prev;
 					tail->next = nullptr;
+					break;
 				}
+				// if key is in middle position
 				else
 				{
 					cur->prev->next = cur->next;
@@ -88,18 +101,78 @@ int main()
 	freopen("..\\00-in.txt", "r", stdin);
 	freopen("..\\00-out.txt", "w", stdout);
 
-	DLinkedList dll;
-	dll.print();
-	dll.insert_end(6);
-	dll.insert_end(6);
-	dll.insert_end(10);
-	dll.insert_end(8);
-	dll.insert_end(15);
-	dll.insert_end(10);
+	// tc1
+	{
+		LinkedList list;
+		list.print();
 
-	dll.print();
+		list.insert_end(1);
+		list.insert_end(2);
+		list.insert_end(5);
+		list.insert_end(4);
+		list.insert_end(5);
+		list.insert_end(4);
+		list.insert_end(4);
+		list.delete_all_nodes_with_key(5);
 
-	dll.delete_all(6);
-	dll.print();
+		list.print();
+
+		string expected = "1 2 4 4 4";
+		cout << expected << " (expected)" << endl;
+		cout << "----------------------------" << endl;
+	}
+	// tc2
+	{
+		LinkedList list;
+		list.print();
+
+		list.insert_end(1);
+		list.insert_end(1);
+
+		list.delete_all_nodes_with_key(1);
+
+		list.print();
+
+		string expected = "EMPTY";
+		cout << expected << " (expected)" << endl;
+		cout << "----------------------------" << endl;
+	}
+	// tc3
+	{
+		LinkedList list;
+		list.print();
+
+		list.insert_end(1);
+		list.insert_end(2);
+		list.insert_end(5);
+		list.insert_end(4);
+		list.insert_end(4);
+		list.insert_end(4);
+		list.insert_end(4);
+		list.delete_all_nodes_with_key(4);
+
+		list.print();
+
+		string expected = "1 2 5";
+		cout << expected << " (expected)" << endl;
+		cout << "----------------------------" << endl;
+	}
+	// tc4
+	{
+		LinkedList list;
+		list.print();
+
+		list.insert_end(1);
+		list.insert_end(2);
+		list.insert_end(5);
+		list.insert_end(4);
+		list.delete_all_nodes_with_key(7);
+
+		list.print();
+
+		string expected = "1 2 5 4";
+		cout << expected << " (expected)" << endl;
+		cout << "----------------------------" << endl;
+	}
 	return 0;
 }
