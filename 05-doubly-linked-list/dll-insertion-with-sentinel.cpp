@@ -48,9 +48,11 @@ public:
 	}
 	void insert_end(int x) // O(n)-time, O(1)-memory
 	{
-		auto new_node = new DNode(trailer->prev, x, trailer);
-		trailer->prev->next = new_node;
-		trailer->prev = new_node;
+		// auto new_node = new DNode(trailer->prev, x, trailer);
+		// trailer->prev->next = new_node;
+		// trailer->prev = new_node;
+		
+		trailer->prev = trailer->prev->next = new DNode(trailer->prev, x, trailer);
 	}
 };
 
