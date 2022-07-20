@@ -1,6 +1,7 @@
-inserted 10
-inserted 20
-inserted 30
+the stack is 
+30
+20
+10
 stk.isFull()  1
 30
 30

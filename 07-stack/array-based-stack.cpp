@@ -1,14 +1,21 @@
 #include <iostream>
+#include <cassert>
 using namespace std;
 
 class Stack
 {
-	int *stack;
-	int capacity, top = -1;
+private:
+	int *array;
+	int size;
+	// here top refers to "index" of the top element not the top element itself
+	int top;
 
 public:
-	Stack(int capacity) : capacity(capacity)
+	Stack(int size)
 	{
+		this->size = size;
+		this->array = new int[size];
+		this->top = -1;
 	}
 	bool isEmpty()
 	{
@@ -16,27 +23,34 @@ public:
 	}
 	bool isFull()
 	{
-		return top == capacity - 1;
-	}
-	int peek()
-	{
-		return stack[top];
-	}
-	int pop()
-	{
-		return stack[top--];
+		return top == size - 1;
 	}
 	void push(int x)
 	{
-		if (isFull())
+		assert(!isFull());
+		array[++top] = x;
+	}
+	int pop()
+	{
+		assert(!isEmpty());
+		return array[top--];
+	}
+	int peek()
+	{
+		assert(!isEmpty());
+		return array[top];
+	}
+	void display()
+	{
+		cout << "the stack is " << endl;
+		for (int i = top; i >= 0; i--)
 		{
-			cout << "FULLL" << endl;
+			cout << array[i] << endl;
 		}
-		else
-		{
-			stack[++top] = x;
-			cout << "inserted " << x << endl;
-		}
+	}
+	~Stack()
+	{
+		delete[] array;
 	}
 };
 int main()
@@ -49,6 +63,7 @@ int main()
 	stk.push(10);
 	stk.push(20);
 	stk.push(30);
+	stk.display();
 	cout << "stk.isFull()  " << stk.isFull() << endl;
 	cout << stk.peek() << endl;
 	cout << stk.pop() << endl;
