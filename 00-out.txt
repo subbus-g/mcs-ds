@@ -1,8 +1,8 @@
-the stack is 
-30
-20
-10
+111the stack is 30 20 10 
 stk.isFull()  1
-30
-30
-0
+stk.peek() 1
+stk.pop() 1
+the stack is 20 10 
+stk.pop() 1
+the stack is 10 
+stk.isFull()  0
