@@ -22,6 +22,8 @@ string reverse_subwords(string line)
 {
 	string reversed{};
 	stack<int> stk;
+	// trick to avoid special condition is to line extra space at end
+	line.append(" ");
 	for (auto &c : line)
 	{
 		if (c != ' ')
@@ -35,11 +37,6 @@ string reverse_subwords(string line)
 			stk.pop();
 		}
 		reversed += ' ';
-	}
-	while (!stk.empty())
-	{
-		reversed += stk.top();
-		stk.pop();
 	}
 	return reversed;
 }
