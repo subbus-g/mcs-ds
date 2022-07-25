@@ -1,1 +1,11 @@
-254321
+stk.peek(1): 4
+stk.peek(2): 9
+			 the stack 1 			
+8
+6
+4
+			 the stack 2 			
+3
+9
+7
+5
