@@ -1,27 +1,7 @@
-enqueued 2
-front: 0
-rear: 0
-queue array:  2 
-
-enqueued 5
-front: 0
-rear: 1
-queue array:  2 5 
-
-enqueued 7
-front: 0
-rear: 2
-queue array:  2 5 7 
-
-dequeued 
-front: 1
-rear: 2
-queue array:  5 7 
-dequeued 
-front: 2
-rear: 2
-queue array:  7 
-dequeued 
-front: 3
-rear: 2
-queue array:  
+7
+7
+7
+7
+6
+8
+0
