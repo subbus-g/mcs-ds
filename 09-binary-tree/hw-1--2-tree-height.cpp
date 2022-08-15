@@ -82,7 +82,7 @@ int main()
 
 	tree.print_inorder();
 	cout << endl;
-	cout << "max of the tree is :" << tree.tree_height() << endl;
+	cout << "height of the tree is :" << tree.tree_height() << endl;
 	cout << "expected:" << 3;
 
 	return 0;
