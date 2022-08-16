@@ -62,11 +62,11 @@ public:
 			exists = true;
 		else if (left)
 		{
-			exists = exists || left->is_exists(x);
+			exists = left->is_exists(x);
 		}
 		else if (right)
 		{
-			exists = exists || right->is_exists(x);
+			exists = right->is_exists(x);
 		}
 		return exists;
 	}
