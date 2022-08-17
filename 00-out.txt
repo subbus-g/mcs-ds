@@ -1,5 +1,4 @@
-4 2 5 9 3 15 6 8 2 7 4 2 1 
-is 1 exists in the tree: true
-is 15 exists in the tree: true
-is 4 exists in the tree: true
-is 69 exists in the tree: false
+tree.is_perfect() == 1 1
+tree.is_perfect() == 1 1
+tree.is_perfect() == 0 0
+tree.is_perfect() == 1 1
