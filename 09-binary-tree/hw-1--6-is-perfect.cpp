@@ -72,24 +72,38 @@ public:
 		// initial call
 		if (h == -1)
 		{
-			//assign h with the height of the tree
+			// assign h with the height of the tree
 			h = tree_height();
 		}
 
-		//checking given tree is perfect or not
-		if (!left && !right)
-		{
-			return h == 0 ? true : false;
-		}
+		// actual checking for perfectness
+
+		// if there is only 1 child
 		if (left && !right || !left && right)
 		{
+			// it is not perfect
 			return false;
 		}
-
-		return left->is_perfect(h - 1) && right->is_perfect(h - 1);
+		// if the node is leaf then it should present at height 0 to be perfect
+		else if (!left && !right)
+		{
+			if (h == 0)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+		// in other cases, we can determines perfectness of the tree by
+		// determining the perfectness of its left subtree and its right subtree
+		else
+		{
+			return left->is_perfect(h - 1) && right->is_perfect(h - 1);
+		}
 	}
-};æ
-
+};
 int main()
 {
 	// comment these 2 lines for console I/O rather than file I/O
