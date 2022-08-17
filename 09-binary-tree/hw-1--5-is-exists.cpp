@@ -59,16 +59,18 @@ public:
 	{
 		bool exists = false;
 
-		//is it exist in the root
+		// is it exist in the root
 		if (data == x)
 			exists = true;
-		//is it exist in the left sub tree
-		else if (left)
+		// if is not there found yet, and if there is a left sub tree
+		// check in it
+		else if (!exists && left)
 		{
 			exists = left->is_exists(x);
 		}
-		//is it exist in the right sub tree
-		else if (right)
+		// if is not there found yet, and if there is a right sub tree
+		// check in it
+		else if (!exists && right)
 		{
 			exists = right->is_exists(x);
 		}
