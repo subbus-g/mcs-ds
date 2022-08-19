@@ -28,25 +28,41 @@ public:
 	}
 	////////////////////////////////////////////
 
+	//initial call with 1 element as root
+	//so null root check is not required
 	void insert(int target)
 	{
-		if (!left && target < data)
+		//if the given element is less than root's element
+		if (target < data)
 		{
-			left = new BinarySearchTree(target);
-			return;
+			//if the current tree has no left subtree
+			if (!left)
+			{
+				//create one and stop
+				left = new BinarySearchTree(target);
+				return;
+			}
+			//else insert in the left subTree
+			else
+			{
+				left->insert(target);
+			}
 		}
-		else if (!right && target > data)
-		{
-			right = new BinarySearchTree(target);
-			return;
-		}
-		else if (target < data)
-		{
-			left->insert(target);
-		}
+		// if the given element is greather than root's element
 		else if (target > data)
 		{
-			right->insert(target);
+			//if the current tree has no right subTree
+			if (!right)
+			{
+				//create one and stop
+				right = new BinarySearchTree(target);
+				return;
+			}
+			//else insert in the right subTree
+			else
+			{
+				right->insert(target);
+			}
 		}
 	}
 };
