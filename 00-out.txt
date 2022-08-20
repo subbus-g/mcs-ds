@@ -1,2 +1,6 @@
 expected: 15 20 35 45 50 60 70 73 
 actual:   15 20 35 45 50 60 70 73 
+20 true
+70 true
+73 true
+69 false
