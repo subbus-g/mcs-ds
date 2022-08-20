@@ -28,21 +28,22 @@ public:
 	}
 	////////////////////////////////////////////
 
-	//initial call with 1 element as root
-	//so null root check is not required
+	// initial call with 1 element as root
+	// so null root check is not required
+	// time - O(height) for traversing the tree
+	// memory - O(height) - for recursive stack
 	void insert(int target)
 	{
-		//if the given element is less than root's element
+		// if the given element is less than root's element
 		if (target < data)
 		{
-			//if the current tree has no left subtree
+			// if the current tree has no left subtree
 			if (!left)
 			{
-				//create one and stop
+				// create one and stop
 				left = new BinarySearchTree(target);
-				return;
 			}
-			//else insert in the left subTree
+			// else insert in the left subTree
 			else
 			{
 				left->insert(target);
@@ -51,14 +52,13 @@ public:
 		// if the given element is greather than root's element
 		else if (target > data)
 		{
-			//if the current tree has no right subTree
+			// if the current tree has no right subTree
 			if (!right)
 			{
-				//create one and stop
+				// create one and stop
 				right = new BinarySearchTree(target);
-				return;
 			}
-			//else insert in the right subTree
+			// else insert in the right subTree
 			else
 			{
 				right->insert(target);
